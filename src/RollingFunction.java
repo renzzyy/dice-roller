@@ -26,10 +26,5 @@ public class RollingFunction {
 	public int rollTotal() {
 		return total;
 	}
-	
-	// main test
-	public static void main(String[] args) {
-		new RollingFunction();
-	}
 
 }
