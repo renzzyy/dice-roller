@@ -1,4 +1,5 @@
 import java.awt.BorderLayout;
+import java.awt.Color;
 import java.awt.Component;
 import java.awt.GridLayout;
 import java.awt.event.ActionEvent;
@@ -84,8 +85,6 @@ public class RollingGUI extends JFrame implements ActionListener {
 		frame.add(north, BorderLayout.NORTH);
 		
 		// dice visual
-		
-		
 		frame.setVisible(true);
 	}
 	
@@ -104,12 +103,6 @@ public class RollingGUI extends JFrame implements ActionListener {
 		// returns it as total
 		integ = rollFunc.rollTotal();
 	}
-	
-
-	public static void main(String[] args) {
-		new RollingGUI();
-
-	}
 
 	@Override
 	public void actionPerformed(ActionEvent e) {
@@ -117,20 +110,21 @@ public class RollingGUI extends JFrame implements ActionListener {
 			this.roll();
 			
 			west = new JPanel();
-			west.setLayout(new GridLayout(2, 0));
 			frame.add(west, BorderLayout.WEST);
-			
+
 			JLabel array = new JLabel("Individual Rolls: " + arr);
 			JLabel integer = new JLabel("Total: " + integ);
-			
+			System.out.print(arr + " " + integ); // test
+			west.setSize(700, 500);
 			west.add(array);
 			west.add(integer);
 			
-			west.setVisible(true);
-
-			
+			frame.setVisible(true);
 		}
 		
 	}
 
+	public static void main(String[] args) {
+		new RollingGUI();
+	}
 }
