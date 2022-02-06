@@ -30,20 +30,21 @@ public class RollingGUI extends JFrame implements ActionListener {
 	private JComboBox<Integer> typeDiceList;
 	private JButton roll;
 	private JPanel north;
-	private JPanel south;
 	private JPanel west;
+	private JLabel array;
+	private JLabel integer;
 	
 	private ArrayList<Object> arr = new ArrayList<Object>();
 	private int integ;
 
-	
 	public RollingGUI() {
 		frame = new JFrame();
+		west = new JPanel();
 		
 		frame.setTitle("Dice Roller"); // sets window title
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE); // close
 		frame.pack();
-		frame.setSize(700, 500);
+		frame.setSize(400, 300);
 		frame.setLocationRelativeTo(null); // centres it
 		
 		// TOP BAR
@@ -104,26 +105,35 @@ public class RollingGUI extends JFrame implements ActionListener {
 		integ = rollFunc.rollTotal();
 	}
 
+	// removes previous roll from the panel
+	public void updateRolls() {
+		west.removeAll();
+		west.revalidate();
+		west.repaint();
+	}
+
 	@Override
+	// what happens when user clicks "roll"
 	public void actionPerformed(ActionEvent e) {
 		if (e.getSource().equals(roll)) {
 			this.roll();
-			
-			west = new JPanel();
+
 			frame.add(west, BorderLayout.WEST);
 
-			JLabel array = new JLabel("Individual Rolls: " + arr);
-			JLabel integer = new JLabel("Total: " + integ);
-			System.out.print(arr + " " + integ); // test
-			west.setSize(700, 500);
+			array = new JLabel();
+			integer = new JLabel();
+			
+			updateRolls();
+
 			west.add(array);
+			array.setText("Individual Rolls: " + arr);
 			west.add(integer);
+			integer.setText("Total: " + integ);
 			
 			frame.setVisible(true);
 		}
 		
 	}
-
 	public static void main(String[] args) {
 		new RollingGUI();
 	}
